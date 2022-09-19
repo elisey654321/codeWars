@@ -6,6 +6,8 @@
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashSet;
+import java.util.LinkedList;
 
 public class SudokuSolver {
 
@@ -61,19 +63,31 @@ public class SudokuSolver {
     }
 
     private int checkConst(int i, int j, int k) {
-        System.out.printf(String.valueOf(grid9x3x3[i][j][k]));
+//        System.out.printf(String.valueOf(grid9x3x3[i][j][k]));
         ArrayList<Integer> lineJ = new ArrayList<Integer>();
         ArrayList<Integer> lineK = new ArrayList<Integer>();
+        ArrayList<Integer> lineI = new ArrayList<Integer>();
 
-        int iK = (i - (i + 1) % 3 == -1 ? 0 : i - (i + 1) % 3);
+        HashSet<Integer> lineAll = new HashSet<>();
+
+        int beginIK = (i-1 - (i - 1) % 3 == -1 ? 0 : i-1 - (i - 1) % 3);
         int iJ = 0;
+        int iK = 0;
 
 
         for (int l = 0; l < 3; l++) {
-            iK += l;
+            iK = beginIK + l;
             for (int m = 0; m < 3; m++) {
-                Integer number = grid9x3x3[iK][j][m];
-                if (number != 0) lineK.add(number);
+                try {
+                    Integer number = grid9x3x3[iK][j][m];
+                    if (number != 0) {
+                        lineK.add(number);
+                        lineAll.add(number);
+                    }
+                }catch (Exception e){
+                    e.printStackTrace();
+                }
+
             }
         }
 
@@ -81,9 +95,22 @@ public class SudokuSolver {
             iJ += (3 * l - 1 == -1 ? 0 : 3 * l - 1);
             for (int m = 0; m < 3; m++) {
                 Integer number = grid9x3x3[iK][m][l];
-                if (number != 0) lineK.add(number);
+                if (number != 0) {
+                    lineK.add(number);
+                    lineAll.add(number);
+                }
             }
         }
+
+        for (int l = 0; l < grid9x3x3[iK].length; l++) {
+            for (int m = 0; m < grid9x3x3[iK].length; m++) {
+                Integer number = grid9x3x3[iK][m][l];
+                if (number != 0) lineAll.add(number);
+            }
+        }
+
+        if (lineAll.size() == 8) System.out.println("this is const " + grid9x3x3[i][j][k]);
+        System.out.println(lineAll.size());
 
         return 0;
     }

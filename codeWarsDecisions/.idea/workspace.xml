@@ -7,7 +7,8 @@
     <list default="true" id="dd8a8b90-8689-40bb-890a-155673855e53" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/SudokuSolver.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/SudokuSolver.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/SudokuSolver.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/HardSudokuSolver_Tests.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/HardSudokuSolver_Tests.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/SudokuSolver.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/SudokuSolver.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -84,7 +85,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1663613267975</updated>
-      <workItem from="1663613269302" duration="4012000" />
+      <workItem from="1663613269302" duration="5623000" />
     </task>
     <servers />
   </component>
@@ -110,10 +111,15 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/SudokuSolver.java</url>
-          <line>87</line>
-          <option name="timeStamp" value="10" />
+          <line>110</line>
+          <option name="timeStamp" value="15" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
+    <watches-manager>
+      <configuration name="JUnit">
+        <watch expression="lineK.size() " language="JAVA" />
+      </configuration>
+    </watches-manager>
   </component>
 </project>
