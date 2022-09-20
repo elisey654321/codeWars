@@ -4,10 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="dd8a8b90-8689-40bb-890a-155673855e53" name="Changes" comment="">
+    <list default="true" id="dd8a8b90-8689-40bb-890a-155673855e53" name="Changes" comment="test">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/SudokuSolver.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/SudokuSolver.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/HardSudokuSolver_Tests.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/HardSudokuSolver_Tests.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/SudokuSolver.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/SudokuSolver.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -37,21 +36,15 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ASKED_ADD_EXTERNAL_FILES": "true",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit5",
-    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5": "",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)"
-  }
-}]]></component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.detected.package.tslint" value="true" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
+  </component>
   <component name="RecentsManager">
     <key name="CreateTestDialog.Recents.Supers">
       <recent name="" />
@@ -86,7 +79,16 @@
       <option name="presentableId" value="Default" />
       <updated>1663613267975</updated>
       <workItem from="1663613269302" duration="5623000" />
+      <workItem from="1663655490087" duration="16465000" />
     </task>
+    <task id="LOCAL-00001" summary="test">
+      <created>1663655695567</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1663655695567</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -105,17 +107,40 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+    <MESSAGE value="test" />
+    <option name="LAST_COMMIT_MESSAGE" value="test" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/SudokuSolver.java</url>
-          <line>110</line>
-          <option name="timeStamp" value="15" />
+          <line>52</line>
+          <option name="timeStamp" value="65" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/SudokuSolver.java</url>
+          <line>78</line>
+          <option name="timeStamp" value="77" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/SudokuSolver.java</url>
+          <line>80</line>
+          <option name="timeStamp" value="82" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/SudokuSolver.java</url>
+          <line>98</line>
+          <option name="timeStamp" value="86" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
+    <pin-to-top-manager>
+      <pinned-members>
+        <PinnedItemInfo parentTag="SudokuSolver" memberName="grid9x3x3_1" />
+        <PinnedItemInfo parentTag="java.lang.StringBuilder" memberName="value" />
+      </pinned-members>
+    </pin-to-top-manager>
     <watches-manager>
       <configuration name="JUnit">
         <watch expression="lineK.size() " language="JAVA" />
