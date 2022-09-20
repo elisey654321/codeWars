@@ -1,23 +1,13 @@
-
-/*
-  https://www.codewars.com/kata/5588bd9f28dbb06f43000085/train/java
-*/
-
-
 import java.util.ArrayList;
 import java.util.HashSet;
 
 public class SudokuSolver {
- //test
-    private int[][] grid;
+
+    int[][] arr = new int[9][9];
     private int[][][] grid9x3x3 = new int[9][3][3];
-    private int[][][] grid9x3x3_1 = new int[9][3][3];
-    private int[][][] grid9x3x3_2 = new int[9][3][3];
     private int[] gridNoZero = new int[9];
-    private boolean working = true;
 
     public SudokuSolver(int[][] grid) {
-        this.grid = grid;
 
         int nowGrid = 0;
         int nowI = 0;
@@ -46,64 +36,38 @@ public class SudokuSolver {
             }
         }
 
+
+        this.arr = grid;
     }
 
-    public int[][] solve() {
+    private boolean checkInvalidGrids(int[][][] grid_1) {
+        int[][][] localGrid = new int[9][3][3];
 
-        checkGrid(grid9x3x3);
-
-        return null;
-    }
-
-    private int[][][] checkGrid(int[][][] grid){
-        int[][][] localGrid = grid.clone();
-
-        for (int j = 0; j < 3; j++) {
-            for (int i = 0; i < 9; i++) {
+        for (int i = 0; i < 9; i++) {
+            for (int j = 0; j < 3; j++) {
                 for (int k = 0; k < 3; k++) {
-                    if (localGrid[i][j][k] != 0) continue;
-                    int result = checkSingle(i, j, k, localGrid);
+                    localGrid[i][j][k] = grid_1[i][j][k];
 
-                    if (result != 0) {
-                        localGrid[i][j][k] = result;
-                    } else {
-                        String variable = String.valueOf(getVariable(i, j, k, localGrid));
-                        for (int l = 0; l < variable.length(); l++) {
-                            int number = Integer.valueOf(variable.substring(l, l + 1));
-                            if (number == 0)
-                                return null;
-                            localGrid[i][j][k] = number;
-                            int[][][] localGrid_1 = checkGrid(localGrid);
-                            if (localGrid_1 != null) {
-                                System.out.println("answer");
-                            } else {
-                                System.out.println("null nu i hui s nim");
-                            }
-                            System.out.println("final");
+                        int result = getVariable(i, j, k, grid_1);
+                        if (result == 0)
+                            return true;
 
-                        }
-                    }
                 }
             }
         }
-
-        return localGrid;
+        return false;
     }
 
-    private int getVariable(int i, int j, int k, int[][][] grid){
+    private int getVariable(int i, int j, int k, int[][][] grid) {
 
-        if (grid[i][j][k] != 0) return 0;
-
-        if (i == 3 && j == 0 && k == 1)
-            System.out.println("test");
-
+//        if (grid[i][j][k] != 0) return 0;
 
         Integer resultInt = 0;
         StringBuilder result = new StringBuilder();
         ArrayList<Integer> lineK = new ArrayList<>();
         HashSet<Integer> lineAll = new HashSet<>();
 
-        int beginIK = i - i%3;
+        int beginIK = i - i % 3;
         int iJ = 0;
         int iK = 0;
 
@@ -116,14 +80,14 @@ public class SudokuSolver {
                         lineK.add(number);
                         lineAll.add(number);
                     }
-                }catch (Exception e){
+                } catch (Exception e) {
                     e.printStackTrace();
                 }
 
             }
         }
         for (int l = 0; l < 3; l++) {
-            iJ = i%3 + l * 3;
+            iJ = i % 3 + l * 3;
             for (int m = 0; m < 3; m++) {
                 try {
                     Integer number = grid[iJ][m][k];
@@ -131,7 +95,7 @@ public class SudokuSolver {
                         lineK.add(number);
                         lineAll.add(number);
                     }
-                }catch (Exception e){
+                } catch (Exception e) {
                     e.printStackTrace();
                 }
 
@@ -150,23 +114,117 @@ public class SudokuSolver {
             }
         }
 
-        if (!result.toString().equals("")){
+        if (!result.toString().equals("")) {
             resultInt = Integer.valueOf(result.toString());
-        }else
-            System.out.println("test");
+        }
+//            System.out.println("test");
 
         return resultInt;
     }
 
-    private int checkSingle(int i, int j, int k,int[][][] grid9x3x3) {
+    public int[][] solve() {
+        try {
+//            System.out.printf("{");
+//            for (int i = 0; i < arr.length; i++) {
+//                System.out.printf("{");
+//                for (int j = 0; j < arr[i].length; j++) {
+//                    System.out.printf(String.valueOf(arr[i][j]) + ",");
+//                }
+//                System.out.printf("}");
+//                System.out.println();
+//            }
+//            System.out.printf("}");
 
-        int resultInt = getVariable(i, j, k, grid9x3x3);
+            boolean invalidGrids = checkInvalidGrids(grid9x3x3);
 
-        if (!(String.valueOf(resultInt).length() == 1)){
-            resultInt = 0;
+            boolean answer = sudoku(arr);
+            if (!answer || invalidGrids){
+                throw new IllegalArgumentException();
+            }
+        }catch (Exception e){
+            throw new IllegalArgumentException();
+        }
+        return arr;
+    }
+
+    public static boolean sudoku(int[][] grid) {
+        int[] ra = Unassigned(grid);
+        if (ra[0] == -1) {
+            return true;
         }
 
-        return resultInt;
+        int row = ra[0];
+        int col = ra[1];
+
+        for (int num = 1; num <= 9; num++) {
+            if (isSafe(grid, row, col, num)) {
+
+                grid[row][col] = num;
+                boolean check = sudoku(grid);
+                if (check == true) {
+                    return true;
+                }
+                grid[row][col] = 0;
+
+
+            }
+        }
+        return false;
+    }
+
+    public static int[] Unassigned(int[][] arr) {
+
+        int[] ra = new int[2]; //returns the position of first unassigned position
+        ra[0] = -1;
+        ra[1] = -1;
+
+        for (int row = 0; row < arr.length; row++) {
+            for (int col = 0; col < arr.length; col++) {
+                if (arr[row][col] == 0) {
+                    ra[0] = row;
+                    ra[1] = col;
+                    return ra;
+                }
+            }
+        }
+
+        return ra;
+
+
+    }//returns the first unassigned position
+
+    public static boolean usedInRow(int[][] grid, int row, int num) {
+        for (int i = 0; i < grid.length; i++) {
+            if (grid[row][i] == num) {
+                return true;
+            }
+        }
+        return false;
+    }//is it used in that row?
+
+    public static boolean usedIncol(int[][] grid, int col, int num) {
+        for (int i = 0; i < grid.length; i++) {
+            if (grid[i][col] == num) {
+                return true;
+            }
+        }
+        return false;
+    }//is it used in that col?
+
+    public static boolean usedInBox(int[][] grid, int row1Start, int col1Start, int num) {
+        for (int row = 0; row < 3; row++)
+            for (int col = 0; col < 3; col++)
+                if (grid[row + row1Start][col + col1Start] == num) {
+                    return true;
+                }
+        return false;
+
+    }//is it used in that box?
+
+    public static boolean isSafe(int[][] grid, int row, int col, int num) {//is it safe to place that number at that position, might not be correct nut just safe
+
+        return (!usedIncol(grid, col, num) && !usedInRow(grid, row, num) && !usedInBox(grid, row - row % 3, col - col % 3, num));
+
     }
 
 }
